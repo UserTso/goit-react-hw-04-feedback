@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
+import {Text} from './Statistics.styled';
 
 
 
 export function Statistics({good, neutral, bad, total, positivePercentage}) {
     return (
         <>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Bad: {bad}</p>
-        <p>Total: {total}</p>
-        <p>PositivePercentage: {positivePercentage}%</p>
+        <Text>Good: {good}</Text>
+        <Text>Neutral: {neutral}</Text>
+        <Text>Bad: {bad}</Text>
+        <Text>Total: {total}</Text>
+        <Text>PositivePercentage: {positivePercentage}%</Text>
         </>
     )
 }

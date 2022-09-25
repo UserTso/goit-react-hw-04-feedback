@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
+import {SectionWrapper, Title} from './Section.styled';
 
 export function Section({title, children}) { 
     return (
-        <section>
-            <h1>
+        <SectionWrapper>
+            <Title>
                 {title}
-            </h1>
+            </Title>
             {children}
-        </section>
+        </SectionWrapper>
     )
 }
 

@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
+import {ButtonBox, Button} from './FeedbackOptions.styled';
 
 export function FeedbackOptions({ options, onLeaveFeedback }) {
 //   console.log(options);
   return (
-    <div>
+    <ButtonBox>
       {options.map(option => {
         return (
-          <button
+          <Button
             key={option}
             type="button"
             onClick={() => {
@@ -14,10 +15,10 @@ export function FeedbackOptions({ options, onLeaveFeedback }) {
             }}
           >
             {option}
-          </button>
+          </Button>
         );
       })}
-    </div>
+    </ButtonBox>
   );
 }
 

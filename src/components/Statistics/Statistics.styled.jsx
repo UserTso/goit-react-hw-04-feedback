@@ -1,23 +1,10 @@
 import styled from '@emotion/styled';
 
-export const Title = styled.h2`
-background-color: beige;
+export const Text = styled.p`
 text-align: center;
-`;
+font-size: 24px;
+font-weight: 700;
+margin-top: 0;
 
-export const List = styled.ul`
-text-align: center;
-`;
-
-export const Item = styled.li`
-list-style: none;
-`;
-
-export const Label = styled.span`
-font-size: 24;
-`;
-
-export const Quantity = styled.span`
-font-size: 24;
 `;
 
