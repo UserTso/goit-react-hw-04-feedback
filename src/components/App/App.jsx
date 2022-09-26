@@ -45,7 +45,7 @@ export class App extends React.Component {
           />
         </Section>
         <Section title="Statistics">
-          {this.sumTotal() > 0 ? (<Statistics good={good} neutral={neutral} bad={bad} total= {this.sumTotal()} positivePercentage={this.totalPositivePercentage()} />) : <Notification message="There is no feedback"/>}
+          {this.sumTotal() ? (<Statistics good={good} neutral={neutral} bad={bad} total= {this.sumTotal()} positivePercentage={this.totalPositivePercentage()} />) : <Notification message="There is no feedback"/>}
         </Section>
 
       </Wrapper>
