@@ -1,54 +1,52 @@
-import React from 'react';
+import {useState} from 'react';
 import { Section } from '../Section';
 import { FeedbackOptions } from '../FeedbackOptions';
 import { Statistics } from '../Statistics';
 import {Notification} from '../Notification';
 import {Wrapper} from './App.styled';
 
-export class App extends React.Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
+export function App() {
 
-  handleClick = event => {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
-    this.setState(prevState => {
-      return { [event]: prevState[event] + 1 };
-    });
-  };
+  const handleClick = event => {
+    
+    switch(event) {
+case 'good':
+  setGood(prevState => prevState + 1);
+  break;
+  case 'neutral':
+    setNeutral(prevState => prevState + 1);
+  break;
+  case 'bad':
+    setBad(prevState => prevState + 1);;
+  break;
+  default:
+    return;
+    }
+      };
 
-  sumTotal = () => {
-    // const {good, neutral, bad} = this.state;
-    const arrayValue = Object.values(this.state);
-    const totalFeedBack = arrayValue.reduce((acc, value) => {return acc + value} ,0)
-    return totalFeedBack;
+      const sumTotal = () => {     
+            return good + neutral + bad;
+          }
+          const totalPositivePercentage = () => {
+            return Math.round(good/sumTotal()*100)
+          }
 
-  }
+  return (
+    <Wrapper>
+      <Section title="Please leave feedback">
+        <FeedbackOptions
+          options={['good', 'neutral', 'bad']}
+          onLeaveFeedback={handleClick}
+        />
+      </Section>
+      <Section title="Statistics">
+        {sumTotal() ? (<Statistics good={good} neutral={neutral} bad={bad} total= {sumTotal()} positivePercentage={totalPositivePercentage()} />) : <Notification message="There is no feedback"/>}
+      </Section>
 
-  totalPositivePercentage = () => {
-    const {good} = this.state;
-    return Math.round(good/this.sumTotal()*100)
-  }
-
-  render() {
-    const {good, neutral, bad} = this.state;
-    const arrayOptions = Object.keys(this.state);
-    // console.log(arrayOptions);
-    return (
-      <Wrapper>
-        <Section title="Please leave feedback">
-          <FeedbackOptions
-            options={arrayOptions}
-            onLeaveFeedback={this.handleClick}
-          />
-        </Section>
-        <Section title="Statistics">
-          {this.sumTotal() ? (<Statistics good={good} neutral={neutral} bad={bad} total= {this.sumTotal()} positivePercentage={this.totalPositivePercentage()} />) : <Notification message="There is no feedback"/>}
-        </Section>
-
-      </Wrapper>
-    );
-  }
-}
+    </Wrapper>
+  );
+} 
